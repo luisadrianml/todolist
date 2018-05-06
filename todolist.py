@@ -5,7 +5,7 @@ import json
 import requests
 
 HTTPString = "http://"
-IP = "35.229.35.105:"
+IP = "localhost:"
 PORT = "6000"
 ItemsApiDirection = "/api/"
 items = "items"
