@@ -7,6 +7,7 @@ Created on Sun Apr 15 22:54:40 2018
 #!flask/bin/python
 from flask import Flask, jsonify, request, abort, redirect, g, url_for
 from firebase import firebase
+import urllib
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -25,7 +26,7 @@ def get_items():
 
 @app.route('/api/add', methods=['POST'])
 def insert_task():
-    result = firebase.patch('/items/'+request.json.get("what_to_do"), dict(due_date=request.json.get("due_date"), status=""))
+    result = firebase.patch('/items/'+request.json.get("what_to_do").replace("?",""), dict(due_date=request.json.get("due_date"), status=""))
     print(result!=None)
     return jsonify({'result': result_message(result)})
 
